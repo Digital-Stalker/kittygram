@@ -1,9 +1,15 @@
-from rest_framework import generics
+from rest_framework import viewsets
 
 from .models import Cat
 from .serializers import CatSerializer
 
 
+class CatViewSet(viewsets.ModelViewSet):
+    queryset = Cat.objects.all()
+    serializer_class = CatSerializer
+
+
+"""
 class CatList(generics.ListCreateAPIView):
     queryset = Cat.objects.all()
     serializer_class = CatSerializer
@@ -14,7 +20,6 @@ class CatDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CatSerializer
 
 
-"""
 class APICat(APIView):
     def get(self, request):
         cats = Cat.objects.all()
@@ -55,7 +60,6 @@ class APICatDetail(APIView):
         cat = get_object_or_404(Cat, id=pk)
         cat.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
 
 
 @api_view(['GET', 'POST'])

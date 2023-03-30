@@ -37,7 +37,7 @@ class APICatDetail(APIView):
 
     def put(self, request, pk):
         cat = get_object_or_404(Cat, id=pk)
-        serializer = CatSerializer(cat, data=request.data, partial=True)
+        serializer = CatSerializer(cat, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)

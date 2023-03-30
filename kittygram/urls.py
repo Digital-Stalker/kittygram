@@ -1,11 +1,11 @@
 from django.urls import include, path
 
-from rest_framework.routers import SimpleRouter
+from rest_framework.routers import DefaultRouter
 
 from cats.views import CatViewSet
 
 # Создаётся роутер
-router = SimpleRouter()
+router = DefaultRouter()
 # Вызываем метод .register с нужными параметрами
 router.register('cats', CatViewSet)
 # В роутере можно зарегистрировать любое количество пар "URL, viewset":
